@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nipun Wijesingha - IT undergraduate, IT technician and developer. Skills, experience, projects and contact details.">
+  <title>Nipun Wijesingha - IT Technician & Developer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+  <script>
+    /* Runs before the page paints: enables scroll-reveal and applies the saved theme (no flash) */
+    document.documentElement.classList.add('js');
+    try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <!-- Flaticon UIcons (icons) -->
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <header class="navbar" id="navbar">
+    <a href="#home" class="logo">Nipun Wijesingha</a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-btn" id="theme-btn" aria-label="Switch to light mode"><i aria-hidden="true" class="fi fi-rr-sun"></i></button>
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <h1>Nipun Wijesingha</h1>
+        <h2>IT Technician & Developer</h2>
+        <p class="typed-line" aria-hidden="true"><span id="typed">Hardware &amp; Networking</span><span class="typed-cursor"></span></p>
+        <p>A dedicated IT Technician and passionate IT undergraduate, skilled in hardware, networking, Python development, and software solutions. Aspiring to become a professional Software Engineer and contribute to innovative tech projects.</p>
+        <div class="cta-buttons">
+          <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          <a href="Nipun_CV.pdf" download class="btn btn-secondary">Download CV</a>
+          <a href="#projects" class="btn btn-secondary">View Projects</a>
+        </div>
+        <div class="socials" hidden>
+          <a data-social="github" href="#" target="_blank" rel="noopener" aria-label="GitHub profile" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+          <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" hidden>in</a>
+          <a data-social="email" href="#" aria-label="Send an email" hidden><i aria-hidden="true" class="fi fi-rr-envelope"></i></a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="avatar"><img src="profile.jpg" alt="Portrait of Nipun Wijesingha" width="380" height="380"></div>
+      </div>
+    </section>
+
+    <!-- STATS: numbers are counted automatically from the page content -->
+    <section class="stats" aria-label="At a glance">
+      <div class="stats-grid">
+        <div class="card stat reveal"><span class="stat-num"><span class="count" data-count-of="#projects article.card">0</span></span><p>Projects built</p></div>
+        <div class="card stat reveal"><span class="stat-num"><span class="count" data-count-of="#certificates article.card">0</span></span><p>Certificates earned</p></div>
+        <div class="card stat reveal"><span class="stat-num"><span class="count" data-count-of="#experience .timeline-item">0</span></span><p>Work experiences</p></div>
+        <div class="card stat reveal"><span class="stat-num"><span class="count" data-count-of="#skills article.card">0</span></span><p>Skill areas</p></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content reveal">
+        <p>I am a first-year undergraduate at the University of Colombo School of Computing (UCSC), pursuing a Bachelor's in Information Technology. My journey in tech began with a deep curiosity for how things work, which led me to complete a diploma in Computer Hardware and Networking. Today, I balance my studies with my own venture, KAMA IT Solutions, where I provide practical tech support to my community.</p>
+        <p>My goal is to transition into a software engineering role where I can contribute to building innovative and impactful applications. I am a quick learner, a collaborative team player, and I am actively seeking internship opportunities to apply my skills and grow in a professional environment.</p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-code"></i></div>
+          <h3>Development</h3>
+          <ul class="skill-list">
+            <li>Python Programming</li><li>HTML, CSS, JavaScript</li><li>Git & GitHub</li><li>Web Development Fundamentals</li>
+          </ul>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-computer"></i></div>
+          <h3>Hardware</h3>
+          <ul class="skill-list">
+            <li>PC Assembly & Troubleshooting</li><li>Motherboard Diagnostics</li><li>Component Repair & Upgrades</li><li>BIOS Configuration</li>
+          </ul>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-globe"></i></div>
+          <h3>Networking</h3>
+          <ul class="skill-list">
+            <li>LAN/WAN Setup</li><li>Network Cable Crimping</li><li>IP Addressing & Subnetting</li><li>Router Configuration</li>
+          </ul>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-shield-check"></i></div>
+          <h3>Security</h3>
+          <ul class="skill-list">
+            <li>Cyber Security fundamentals</li><li>System security setup</li><li>Data protection practices</li><li>Security awareness</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- SERVICES (KAMA IT Solutions) -->
+    <section id="services">
+      <h2 class="section-title">Services</h2>
+      <p class="section-intro">Through KAMA IT Solutions I help people and small businesses with everyday IT problems.</p>
+      <div class="grid">
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-computer"></i></div>
+          <h3>Computer repair &amp; upgrades</h3>
+          <p>Diagnosing and fixing hardware and software problems on laptops and desktops, plus component upgrades.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-globe"></i></div>
+          <h3>Network setup</h3>
+          <p>LAN/WAN setup, cable crimping and router configuration for homes and small offices.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-smartphone"></i></div>
+          <h3>Mobile software help</h3>
+          <p>Help with installing, updating and fixing software and settings on your phone.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-browser"></i></div>
+          <h3>Simple websites</h3>
+          <p>Clean, mobile-friendly websites for individuals and small businesses.</p>
+        </article>
+      </div>
+      <div class="service-cta">
+        <a href="#contact" class="btn btn-primary">Request a service</a>
+        <a data-whatsapp class="btn btn-secondary" href="#" target="_blank" rel="noopener" hidden><i aria-hidden="true" class="fi fi-rr-comment"></i> Chat on WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="card">
+            <h3>APEX LAPTOP (Pvt) Ltd</h3>
+            <h4>IT Technician</h4>
+            <p>Responsible for diagnosing and repairing laptop/desktop hardware and software issues, providing technical support to clients, and managing system maintenance.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="card">
+            <h3>KAMA IT Solutions</h3>
+            <h4>Founder & IT Technician</h4>
+            <p>Established and manage KAMA IT Solutions, providing comprehensive IT services including computer repair, network setup, and mobile software assistance.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="card">
+            <h3>Pizza Hut, Borella</h3>
+            <h4>Crew Member</h4>
+            <p>Developed excellent teamwork and communication skills in a fast-paced environment while ensuring timely completion of tasks.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">My Projects</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <img class="thumb" src="csharp_project.jpg" alt="Screenshot of the Student Management System" loading="lazy">
+          <h3>Student Management System</h3>
+          <p>A desktop application built with <strong>C#</strong> and <strong>SQL Server</strong>. It features a user-friendly interface for managing student records, attendance, and grades with full CRUD operations.</p>
+          <ul class="tags"><li>C#</li><li>SQL Server</li></ul>
+          <a href="https://github.com/KAMA1007/student-management-system" target="_blank" rel="noopener" class="btn btn-secondary">View Code</a>
+        </article>
+        <article class="card reveal">
+          <div class="thumb thumb-emoji" aria-hidden="true"><i class="fi fi-rr-camera"></i></div>
+          <h3>Finger Counting App</h3>
+          <p>Uses Python, OpenCV, and MediaPipe to detect hand landmarks from a webcam feed and count the number of raised fingers in real-time.</p>
+          <ul class="tags"><li>Python</li><li>OpenCV</li><li>MediaPipe</li></ul>
+          <a href="https://github.com/KAMA1007/finger-counting-app" target="_blank" rel="noopener" class="btn btn-secondary">View Code</a>
+        </article>
+        <article class="card reveal">
+          <div class="thumb thumb-emoji" aria-hidden="true"><i class="fi fi-rr-browser"></i></div>
+          <h3>Personal Portfolio</h3>
+          <p>This website: built from scratch with HTML, CSS, and JavaScript. Fully responsive, with scroll animations and a working contact form.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <a href="https://github.com/KAMA1007/auspify-web-internship" target="_blank" rel="noopener" class="btn btn-secondary">View Code</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-graduation-cap"></i></div>
+          <h3>Bachelor of Information Technology</h3>
+          <h4>University of Colombo School of Computing</h4>
+          <p>Currently pursuing a comprehensive degree in IT, focusing on software development, systems analysis, and modern IT practices.</p>
+          <span class="status">Currently Enrolled</span>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true"><i class="fi fi-rr-settings"></i></div>
+          <h3>Computer Hardware & Networking Diploma</h3>
+          <h4>VTC Dehiwala</h4>
+          <p>Completed professional training in computer hardware assembly, diagnostics, repair, and networking fundamentals.</p>
+          <span class="status">Completed</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <h2 class="section-title">Certificates</h2>
+      <div class="grid">
+        <article class="card cert-card reveal">
+          <a href="cert_python.jpg" target="_blank" rel="noopener"><img src="cert_python.jpg" alt="Python Programming certificate" loading="lazy"></a>
+          <h3>Python Programming</h3><p>University of Moratuwa</p>
+        </article>
+        <article class="card cert-card reveal">
+          <a href="cert_cyber.jpg" target="_blank" rel="noopener"><img src="cert_cyber.jpg" alt="Cyber Security certificate" loading="lazy"></a>
+          <h3>Cyber Security</h3><p>AION Campus</p>
+        </article>
+        <article class="card cert-card reveal">
+          <a href="cert_hardware.jpg" target="_blank" rel="noopener"><img src="cert_hardware.jpg" alt="Hardware and Networking diploma" loading="lazy"></a>
+          <h3>Hardware & Networking</h3><p>VTC Dehiwala</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="contact-intro">Have a project in mind or need IT support? Send me a message. I'm always open to discussing new opportunities.</p>
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label class="sr-only" for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" aria-describedby="name-error">
+          <small class="error" id="name-error"></small>
+        </div>
+        <div class="field">
+          <label class="sr-only" for="email">Your email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email" autocomplete="email" aria-describedby="email-error">
+          <small class="error" id="email-error"></small>
+        </div>
+        <div class="field">
+          <label class="sr-only" for="message">Your message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Your Message" aria-describedby="message-error"></textarea>
+          <small class="error" id="message-error"></small>
+        </div>
+        <input type="checkbox" id="botcheck" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+
+      <div class="alt-contact">
+        <p>Prefer a quick chat?</p>
+        <a id="whatsapp-btn" data-whatsapp class="btn btn-secondary" href="#" target="_blank" rel="noopener" hidden><i aria-hidden="true" class="fi fi-rr-comment"></i> Chat on WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="socials" hidden>
+      <a data-social="github" href="#" target="_blank" rel="noopener" aria-label="GitHub profile" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" hidden>in</a>
+      <a data-social="email" href="#" aria-label="Send an email" hidden><i aria-hidden="true" class="fi fi-rr-envelope"></i></a>
+    </div>
+    <p>&copy; <span id="year">2026</span> Nipun Wijesingha. All Rights Reserved.</p>
+    <p>Built with passion and a lot of coffee. Icons by <a href="https://www.flaticon.com/uicons" target="_blank" rel="noopener">Flaticon</a>.</p>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to top">↑</button>
+</body>
+</html>

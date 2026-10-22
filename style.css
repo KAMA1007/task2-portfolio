@@ -1,0 +1,290 @@
+/* ========== 1. VARIABLES AND BASE ========== */
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0f;
+  --card: rgba(255, 255, 255, 0.05);
+  --line: rgba(0, 212, 255, 0.2);
+  --cyan: #00d4ff;
+  --violet: #7b2ff7;
+  --violet-text: #a78bfa;   /* lighter purple: readable on dark background */
+  --text: #ffffff;
+  --muted: #a8b0c0;
+  --soft: #c5cad6;
+  --nav-bg: rgba(10, 10, 15, 0.85);
+  --drawer-bg: rgba(10, 10, 15, 0.98);
+  --particle-rgb: 0, 212, 255;
+  --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+  --nav-h: 72px;
+}
+
+/* Light mode: JS adds data-theme="light" to <html> */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f8fc;
+  --card: #ffffff;
+  --line: rgba(2, 132, 199, 0.28);
+  --cyan: #0284c7;
+  --violet: #6d28d9;
+  --violet-text: #6d28d9;
+  --text: #0f172a;
+  --muted: #475569;
+  --soft: #334155;
+  --nav-bg: rgba(244, 248, 252, 0.9);
+  --drawer-bg: #f4f8fc;
+  --particle-rgb: 2, 132, 199;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+#particles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+
+/* ========== 2. NAVBAR ========== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 5%;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1); transition: box-shadow 0.3s;
+}
+/* The blur lives on a pseudo-element so the mobile drawer can be position:fixed */
+.navbar::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--nav-bg); backdrop-filter: blur(15px);
+}
+.navbar.scrolled { box-shadow: 0 5px 30px rgba(0, 212, 255, 0.2); }
+
+.logo {
+  font-size: clamp(1.15rem, 4.6vw, 1.5rem); font-weight: 800; white-space: nowrap; background: var(--grad);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.nav-links { display: flex; gap: clamp(0.9rem, 1.7vw, 1.8rem); font-size: 0.95rem; }
+.nav-links a {
+  color: var(--muted); font-weight: 500; padding: 0.3rem 0;
+  border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--cyan); border-color: var(--cyan); }
+
+.menu-btn {
+  display: none; position: relative; z-index: 2; width: 44px; height: 44px;
+  background: none; border: 0; cursor: pointer;
+  flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+}
+.menu-btn span { width: 26px; height: 3px; background: var(--grad); border-radius: 5px; transition: 0.3s; }
+.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ========== 3. SECTIONS, TITLES, BUTTONS ========== */
+section { max-width: 1150px; margin: 0 auto; padding: 100px 5% 40px; }
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem); text-align: center; margin-bottom: 3.5rem;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.section-title::after {
+  content: ""; display: block; width: 90px; height: 4px; margin: 0.7rem auto 0;
+  background: var(--grad); border-radius: 2px;
+}
+
+.btn {
+  display: inline-block; padding: 0.85rem 2rem; border: 2px solid transparent; border-radius: 50px;
+  font: inherit; font-weight: 600; cursor: pointer; transition: transform 0.25s, background 0.25s, color 0.25s;
+}
+.btn:hover { transform: translateY(-4px); }
+.btn-primary { background: var(--grad); color: #fff; box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3); }
+.btn-secondary { border-color: var(--cyan); color: var(--cyan); }
+.btn-secondary:hover { background: var(--cyan); color: var(--bg); }
+
+/* ========== 4. HERO ========== */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; gap: 3rem; padding-top: 120px; }
+.hero-text { flex: 1.35; animation: slideIn 0.9s ease-out backwards; }
+.hero h1 {
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.1; margin-bottom: 0.8rem; overflow-wrap: anywhere;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); margin-bottom: 1rem; }
+.hero p { color: var(--muted); font-size: 1.15rem; max-width: 560px; }
+.cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+
+.hero-visual { flex: 1; display: flex; justify-content: center; }
+/* Gradient ring: border-image would make the circle square, so we use padding + background */
+.avatar { padding: 5px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 50px rgba(0, 212, 255, 0.5); animation: float 6s ease-in-out infinite; }
+.avatar img { width: min(380px, 70vw); aspect-ratio: 1; height: auto; border-radius: 50%; object-fit: cover; background: var(--bg); }
+
+@keyframes slideIn { from { opacity: 0; transform: translateX(-40px); } }
+@keyframes float { 50% { transform: translateY(-18px); } }
+
+/* ========== 5. CARDS AND GRID ========== */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.8rem; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 2rem;
+  backdrop-filter: blur(10px); transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+.card:hover { transform: translateY(-8px); border-color: var(--cyan); box-shadow: 0 20px 40px rgba(0, 212, 255, 0.25); }
+.card h3 { color: var(--cyan); font-size: 1.35rem; margin-bottom: 0.8rem; }
+.card h4 { color: var(--violet-text); margin-bottom: 0.8rem; }
+.card p, .skill-list li { color: var(--muted); }
+.card-icon {
+  width: 58px; height: 58px; display: grid; place-items: center; margin-bottom: 1rem;
+  border-radius: 16px; background: rgba(0, 212, 255, 0.12); border: 1px solid var(--line);
+  color: var(--cyan); font-size: 1.7rem;
+}
+.card-icon i, .thumb-emoji i { line-height: 0; }
+
+.skill-list li { position: relative; padding: 0.3rem 0 0.3rem 1.5rem; }
+.skill-list li::before { content: "▹"; position: absolute; left: 0; color: var(--cyan); }
+
+.about-content { max-width: 850px; margin: 0 auto; text-align: center; font-size: 1.2rem; line-height: 1.9; color: var(--soft); }
+.about-content p + p { margin-top: 1.4rem; }
+
+/* ========== 6. TIMELINE ========== */
+.timeline { position: relative; max-width: 1000px; margin: 0 auto; }
+.timeline::before {
+  content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; transform: translateX(-50%);
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+}
+.timeline-item { position: relative; width: 50%; margin-bottom: 2.5rem; padding-right: 2.5rem; }
+.timeline-item:nth-child(even) { margin-left: 50%; padding-right: 0; padding-left: 2.5rem; }
+.timeline-item::before {
+  content: ""; position: absolute; top: 28px; right: -12px; width: 24px; height: 24px;
+  border-radius: 50%; background: var(--grad); box-shadow: 0 0 20px var(--cyan);
+}
+.timeline-item:nth-child(even)::before { right: auto; left: -12px; }
+
+/* ========== 7. PROJECTS, EDUCATION, CERTIFICATES ========== */
+.thumb { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; border: 2px solid var(--line); margin-bottom: 1.2rem; }
+.thumb-emoji { display: grid; place-items: center; font-size: 3.5rem; color: var(--cyan); background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(123, 47, 247, 0.25)); }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.4rem; }
+.tags li { padding: 0.2rem 0.8rem; border: 1px solid var(--line); border-radius: 20px; font-size: 0.85rem; color: var(--cyan); }
+
+.status { display: inline-block; margin-top: 1rem; padding: 0.5rem 1.3rem; border-radius: 25px; background: var(--grad); font-weight: 600; font-size: 0.95rem; }
+
+.cert-card { overflow: hidden; text-align: center; }
+.cert-card img { width: 100%; border-radius: 12px; border: 2px solid var(--line); margin-bottom: 1.2rem; transition: transform 0.4s; }
+.cert-card:hover img { transform: scale(1.04); }
+
+/* ========== 8. CONTACT FORM ========== */
+.contact { max-width: 760px; }
+.contact-intro { text-align: center; color: var(--muted); font-size: 1.15rem; margin: -1.5rem auto 2.5rem; }
+#contact-form { display: grid; gap: 0.6rem; }
+input, textarea {
+  width: 100%; padding: 1rem 1.2rem; background: var(--card); color: var(--text); font: inherit;
+  border: 2px solid var(--line); border-radius: 15px; transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+input.invalid, textarea.invalid { border-color: #f87171; }
+.error { display: block; min-height: 1.3rem; margin-top: 0.3rem; color: #f87171; }
+#submit-btn:disabled { opacity: 0.6; cursor: wait; }
+.form-status { text-align: center; font-weight: 600; min-height: 1.5rem; }
+.form-status.ok { color: #4ade80; }
+.form-status.fail { color: #f87171; }
+
+/* ========== 9. FOOTER AND BACK-TO-TOP ========== */
+.footer a { color: var(--cyan); }
+.footer { text-align: center; padding: 2.5rem 5%; margin-top: 3rem; border-top: 1px solid rgba(0, 212, 255, 0.1); color: var(--muted); }
+#back-to-top {
+  position: fixed; right: 1.5rem; bottom: 1.5rem; width: 48px; height: 48px; border: 0; border-radius: 50%;
+  background: var(--grad); color: #fff; font-size: 1.4rem; cursor: pointer;
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+}
+#back-to-top.show { opacity: 1; visibility: visible; }
+
+/* ========== 10. SCROLL REVEAL ========== */
+/* Only hidden when JS is running (html.js), so content is never lost if JS fails */
+.js .reveal:not(.visible) { opacity: 0; }
+.reveal.visible { animation: rise 0.8s ease-out backwards; }
+@keyframes rise { from { opacity: 0; transform: translateY(40px); } }
+
+/* ========== 11. RESPONSIVE ========== */
+@media (max-width: 1180px) {
+  .menu-btn { display: flex; }
+  .nav-links {
+    position: fixed; top: 0; right: 0; z-index: 1; width: min(75%, 360px); height: 100dvh;
+    flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+    background: var(--drawer-bg); box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%); visibility: hidden; transition: transform 0.4s, visibility 0.4s;
+  }
+  .nav-links.open { transform: none; visibility: visible; }
+  .nav-links a { font-size: 1.5rem; }
+}
+
+@media (max-width: 968px) {
+  .hero { flex-direction: column-reverse; text-align: center; padding-top: 100px; }
+  .hero p { margin: 0 auto; }
+  .cta-buttons, .hero .socials { justify-content: center; }
+
+  .timeline::before { left: 11px; transform: none; }
+  .timeline-item, .timeline-item:nth-child(even) { width: 100%; margin-left: 0; padding: 0 0 0 3rem; }
+  .timeline-item::before, .timeline-item:nth-child(even)::before { left: 0; right: auto; }
+}
+
+/* ========== 12. REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ========== 13. THEME BUTTON, LIGHT MODE EXTRAS, WHATSAPP ========== */
+[hidden] { display: none !important; }
+
+.nav-actions { display: flex; align-items: center; gap: 0.6rem; position: relative; z-index: 2; }
+.theme-btn {
+  width: 42px; height: 42px; display: grid; place-items: center; font-size: 1.15rem; cursor: pointer;
+  background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 50%;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.theme-btn:hover { transform: rotate(20deg); border-color: var(--cyan); }
+.theme-btn i { line-height: 0; }
+
+[data-theme="light"] .card { box-shadow: 0 6px 22px rgba(15, 23, 42, 0.07); }
+[data-theme="light"] .card:hover { box-shadow: 0 14px 34px rgba(2, 132, 199, 0.22); }
+[data-theme="light"] .navbar.scrolled { box-shadow: 0 5px 24px rgba(15, 23, 42, 0.12); }
+[data-theme="light"] .nav-links { box-shadow: -10px 0 30px rgba(15, 23, 42, 0.15); }
+
+.alt-contact { text-align: center; margin-top: 2rem; color: var(--muted); }
+.alt-contact .btn { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.8rem; }
+
+/* If profile.jpg is missing, show initials instead of a black circle with alt text */
+.avatar.no-photo img { display: none; }
+.avatar.no-photo::after {
+  content: "NW"; display: grid; place-items: center; width: min(380px, 70vw); aspect-ratio: 1;
+  border-radius: 50%; background: var(--bg); color: var(--cyan); font-size: 5rem; font-weight: 800;
+}
+
+/* ========== 14. TYPING LINE, STATS, SERVICES, SOCIALS ========== */
+.hero .typed-line { color: var(--cyan); font-size: 1.3rem; font-weight: 600; min-height: 2rem; margin-bottom: 0.9rem; }
+.typed-cursor { display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -0.15em; background: var(--cyan); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.stats { padding-top: 10px; padding-bottom: 10px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 1.2rem; }
+.stat { text-align: center; padding: 1.5rem 1rem; }
+.stat-num { display: block; font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.stat p { margin-top: 0.3rem; }
+
+.section-intro { text-align: center; color: var(--muted); max-width: 640px; margin: -1.5rem auto 2.5rem; font-size: 1.1rem; }
+.service-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; }
+.service-cta .btn { display: inline-flex; align-items: center; gap: 0.6rem; }
+
+.socials { display: flex; gap: 0.8rem; margin-top: 1.6rem; }
+.socials a {
+  width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--card); color: var(--cyan);
+  font-size: 1.15rem; font-weight: 800; transition: transform 0.25s, background 0.25s, color 0.25s;
+}
+.socials a:hover { transform: translateY(-4px); background: var(--cyan); color: var(--bg); }
+.socials svg { width: 20px; height: 20px; fill: currentColor; }
+.socials i { line-height: 0; }
+.footer .socials { justify-content: center; margin: 0 0 1.2rem; }
+
+/* Readable label text in light mode too */
+.status { color: #fff; }

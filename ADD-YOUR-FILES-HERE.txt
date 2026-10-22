@@ -1,0 +1,12 @@
+Copy YOUR OWN files into this folder (next to index.html). The names must match exactly, with small letters:
+
+  profile.jpg          your photo
+  csharp_project.jpg   screenshot of the Student Management System
+  cert_python.jpg      Python certificate
+  cert_cyber.jpg       Cyber Security certificate
+  cert_hardware.jpg    Hardware & Networking diploma certificate
+  Nipun_CV.pdf         your CV
+
+Also edit the CONFIG block at the top of script.js (Web3Forms key, WhatsApp number, GitHub/LinkedIn/email),
+and replace YOUR-USERNAME in index.html with your GitHub username.
+You can delete this text file before you upload to GitHub.
